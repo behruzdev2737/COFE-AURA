@@ -15,8 +15,7 @@ const menuItems = [
     origin: "Colombia & Brazil",
     notes: "Dark Chocolate, Cherry",
     roast: "Dark",
-    image:
-      "https://images.unsplash.com/photo-1514432324607-a1282902e90b?auto=format&fit=crop&w=500&q=80",
+    image: "/coffee-1.jpg",
   },
   {
     id: 2,
@@ -27,8 +26,7 @@ const menuItems = [
     origin: "Ethiopia Yirgacheffe",
     notes: "Vanilla, Floral, Honey",
     roast: "Medium",
-    image:
-      "https://images.unsplash.com/photo-1497935586351-b67a49e012bf?auto=format&fit=crop&w=500&q=80",
+    image: "/coffee-2.jpg",
   },
   {
     id: 3,
@@ -39,8 +37,7 @@ const menuItems = [
     origin: "Guatemala Antigua",
     notes: "Caramel, Cocoa, Nutty",
     roast: "Medium Dark",
-    image:
-      "https://images.unsplash.com/photo-1585494156145-1c15fa4eba99?auto=format&fit=crop&w=500&q=80",
+    image: "/coffee-3.jpg",
   },
   {
     id: 4,
@@ -51,8 +48,7 @@ const menuItems = [
     origin: "Ethiopia Sidamo",
     notes: "Jasmine, Bergamot, Lemon",
     roast: "Light",
-    image:
-      "https://images.unsplash.com/photo-1495474472206-bf73fdea3146?auto=format&fit=crop&w=500&q=80",
+    image: "/coffee-4.jpg",
   },
 ];
 
