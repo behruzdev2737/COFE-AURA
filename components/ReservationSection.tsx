@@ -5,17 +5,18 @@ import { Calendar, Clock, Users, ArrowRight } from "lucide-react";
 import { useState } from "react";
 import { addToast } from "./Toast";
 
+import { useAppContext } from "./AppContext";
+
 export function ReservationSection() {
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
   const [guests, setGuests] = useState("2");
+  const { t } = useAppContext();
 
   const handleReserve = (e: React.FormEvent) => {
     e.preventDefault();
     if (date && time && guests) {
-      addToast(
-        `Table reserved for ${guests} on ${date} at ${time}. We look forward to hosting you!`,
-      );
+      addToast(t("toast.reserved"));
       setDate("");
       setTime("");
       setGuests("2");
@@ -23,7 +24,10 @@ export function ReservationSection() {
   };
 
   return (
-    <section className="py-32 px-6 md:px-20 bg-coffee-800 relative border-t border-white/5">
+    <section
+      id="reserve"
+      className="py-32 px-6 md:px-20 bg-coffee-800 relative border-t border-white/5 scroll-mt-24"
+    >
       <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-16">
         {/* Left Side: Text */}
         <motion.div
@@ -34,16 +38,14 @@ export function ReservationSection() {
           className="lg:w-1/2"
         >
           <h2 className="font-serif text-4xl md:text-5xl text-accent-cream mb-6">
-            Reserve Your Experience
+            {t("reserve.title")}
           </h2>
           <div className="w-24 h-1 bg-accent-gold rounded-full mb-8" />
           <p className="text-accent-cream/70 text-lg font-light leading-relaxed mb-8">
-            Whether it's a quiet morning of reflection, a casual business
-            meeting, or an afternoon catching up with friends, secure your spot
-            in our sanctuary.
+            {t("reserve.subtitle")}
           </p>
           <p className="text-accent-cream/50 font-light italic">
-            * For parties larger than 6, please contact us directly.
+            {t("reserve.note")}
           </p>
         </motion.div>
 
@@ -67,7 +69,7 @@ export function ReservationSection() {
                 {/* Date Input */}
                 <div className="space-y-2">
                   <label className="text-xs text-accent-cream/50 uppercase tracking-widest font-semibold flex items-center gap-2">
-                    <Calendar className="w-3 h-3" /> Date
+                    <Calendar className="w-3 h-3" /> {t("reserve.date")}
                   </label>
                   <input
                     type="date"
@@ -81,7 +83,7 @@ export function ReservationSection() {
                 {/* Time Input */}
                 <div className="space-y-2">
                   <label className="text-xs text-accent-cream/50 uppercase tracking-widest font-semibold flex items-center gap-2">
-                    <Clock className="w-3 h-3" /> Time
+                    <Clock className="w-3 h-3" /> {t("reserve.time")}
                   </label>
                   <input
                     type="time"
@@ -96,7 +98,7 @@ export function ReservationSection() {
               {/* Guests Input */}
               <div className="space-y-2">
                 <label className="text-xs text-accent-cream/50 uppercase tracking-widest font-semibold flex items-center gap-2">
-                  <Users className="w-3 h-3" /> Guests
+                  <Users className="w-3 h-3" /> {t("reserve.guests")}
                 </label>
                 <select
                   value={guests}
@@ -105,7 +107,8 @@ export function ReservationSection() {
                 >
                   {[1, 2, 3, 4, 5, 6].map((num) => (
                     <option key={num} value={num}>
-                      {num} {num === 1 ? "Person" : "People"}
+                      {num}{" "}
+                      {num === 1 ? t("reserve.person") : t("reserve.people")}
                     </option>
                   ))}
                 </select>
@@ -115,7 +118,7 @@ export function ReservationSection() {
                 type="submit"
                 className="w-full bg-accent-gold text-coffee-900 py-4 rounded-lg font-bold tracking-widest hover:bg-accent-cream transition-all duration-300 mt-4 flex items-center justify-center gap-2 group"
               >
-                BOOK TABLE
+                {t("reserve.book")}
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </button>
             </div>

@@ -5,7 +5,8 @@ import { Coffee, Menu, ShoppingBag } from "lucide-react";
 import { useAppContext } from "./AppContext";
 
 export function Navbar() {
-  const { setIsMobileMenuOpen, setIsCartOpen, cartItems } = useAppContext();
+  const { setIsMobileMenuOpen, setIsCartOpen, cartItems, t, lang, setLang } =
+    useAppContext();
   const cartCount = cartItems.reduce((acc, item) => acc + item.quantity, 0);
 
   return (
@@ -27,20 +28,50 @@ export function Navbar() {
 
       <div className="hidden md:flex items-center gap-8 text-sm font-medium tracking-widest text-accent-cream/80">
         <a href="#menu" className="hover:text-accent-gold transition-colors">
-          MENU
+          {t("nav.menu")}
+        </a>
+        <a href="#shop" className="hover:text-accent-gold transition-colors">
+          {t("nav.shop")}
         </a>
         <a href="#story" className="hover:text-accent-gold transition-colors">
-          OUR STORY
+          {t("nav.story")}
+        </a>
+        <a href="#reserve" className="hover:text-accent-gold transition-colors">
+          {t("nav.reserve")}
         </a>
         <a
           href="#locations"
           className="hover:text-accent-gold transition-colors"
         >
-          LOCATIONS
+          {t("nav.locations")}
         </a>
       </div>
 
       <div className="flex items-center gap-4">
+        {/* Language Switcher */}
+        <div className="hidden md:flex items-center gap-2 text-xs font-bold tracking-widest text-accent-cream/50 mr-2">
+          <button
+            onClick={() => setLang("en")}
+            className={`hover:text-accent-gold transition-colors ${lang === "en" ? "text-accent-gold" : ""}`}
+          >
+            EN
+          </button>
+          <span>|</span>
+          <button
+            onClick={() => setLang("uz")}
+            className={`hover:text-accent-gold transition-colors ${lang === "uz" ? "text-accent-gold" : ""}`}
+          >
+            UZ
+          </button>
+          <span>|</span>
+          <button
+            onClick={() => setLang("ru")}
+            className={`hover:text-accent-gold transition-colors ${lang === "ru" ? "text-accent-gold" : ""}`}
+          >
+            RU
+          </button>
+        </div>
+
         {/* Cart Button */}
         <button
           onClick={() => setIsCartOpen(true)}

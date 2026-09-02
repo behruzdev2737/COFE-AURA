@@ -13,6 +13,7 @@ export function ProductModal() {
     selectedProduct,
     setSelectedProduct,
     addToCart,
+    t,
   } = useAppContext();
 
   if (!selectedProduct) return null;
@@ -39,7 +40,7 @@ export function ProductModal() {
             <div className="w-full md:w-2/5 bg-gradient-to-br from-[#1C1614] to-[#0B0806] flex flex-col items-center justify-center p-0 border-b md:border-b-0 md:border-r border-white/5 relative min-h-[300px]">
               <div className="absolute top-6 text-center w-full z-10 pointer-events-none">
                 <h3 className="text-accent-cream/50 uppercase tracking-widest text-xs font-semibold">
-                  Select Bean Origin
+                  {t("menu.bean") || "Select Bean"}
                 </h3>
               </div>
               <BeanSelector3D
@@ -90,7 +91,7 @@ export function ProductModal() {
                   <Map className="w-5 h-5 text-accent-gold/50" />
                   <div>
                     <p className="text-xs text-accent-cream/40 uppercase tracking-wider">
-                      Origin
+                      {t("menu.origin")}
                     </p>
                     <p className="text-sm text-accent-cream/80">
                       {selectedProduct.origin || "Ethiopia & Colombia"}
@@ -101,7 +102,7 @@ export function ProductModal() {
                   <Target className="w-5 h-5 text-accent-gold/50" />
                   <div>
                     <p className="text-xs text-accent-cream/40 uppercase tracking-wider">
-                      Selected Bean
+                      {t("menu.bean")}
                     </p>
                     <p className="text-sm text-accent-cream/80 font-semibold text-accent-gold">
                       {selectedProduct.beanType || "Robusta"}
@@ -112,7 +113,7 @@ export function ProductModal() {
                   <Flame className="w-5 h-5 text-accent-gold/50" />
                   <div>
                     <p className="text-xs text-accent-cream/40 uppercase tracking-wider">
-                      Roast
+                      {t("menu.roast")}
                     </p>
                     <p className="text-sm text-accent-cream/80">
                       {selectedProduct.roast || "Medium Dark"}
@@ -131,11 +132,13 @@ export function ProductModal() {
                       image: selectedProduct.image || "/coffee-placeholder.svg",
                     });
                     setIsModalOpen(false);
-                    addToast(`${selectedProduct.name} added to cart!`);
+                    addToast(
+                      `${selectedProduct.name} ${t ? t("toast.added") : "added to cart!"}`,
+                    );
                   }}
                   className="w-full bg-accent-gold text-coffee-900 py-4 rounded-full font-bold tracking-widest hover:bg-accent-gold/90 transition-all hover:shadow-[0_0_20px_rgba(212,175,55,0.3)]"
                 >
-                  ADD TO CART
+                  {t ? t("menu.add_to_cart") : "ADD TO CART"}
                 </button>
               </div>
             </div>

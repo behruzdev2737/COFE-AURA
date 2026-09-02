@@ -25,7 +25,12 @@ interface AppContextType {
   setIsModalOpen: (v: boolean) => void;
   selectedProduct: any;
   setSelectedProduct: (product: any) => void;
+  lang: string;
+  setLang: (lang: any) => void;
+  t: (key: string) => string;
 }
+
+import { translations, Language } from "./i18n";
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
 
@@ -36,6 +41,18 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState<any>(null);
+
+  const [lang, setLang] = useState<Language>("en");
+
+  const t = (keyPath: string): string => {
+    const keys = keyPath.split(".");
+    let current: any = translations[lang];
+    for (const key of keys) {
+      if (current[key] === undefined) return keyPath;
+      current = current[key];
+    }
+    return current;
+  };
 
   const clearCart = () => {
     setCartItems([]);
@@ -90,6 +107,9 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
         setIsModalOpen,
         selectedProduct,
         setSelectedProduct,
+        lang,
+        setLang,
+        t,
       }}
     >
       {children}

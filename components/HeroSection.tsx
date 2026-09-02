@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { Canvas, useThree } from "@react-three/fiber";
 import { CoffeeCup3D } from "./CoffeeCup3D";
 import { Suspense } from "react";
+import { useAppContext } from "./AppContext";
 
 function ResponsiveScene() {
   const { viewport } = useThree();
@@ -28,6 +29,8 @@ function ResponsiveScene() {
 }
 
 export function HeroSection() {
+  const { t } = useAppContext();
+
   return (
     <section className="relative min-h-screen w-full flex flex-col md:flex-row items-center justify-between px-6 md:px-20 overflow-hidden bg-[#0B0806]">
       {/* Crisp background accents instead of blurry gradients */}
@@ -39,10 +42,9 @@ export function HeroSection() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="font-serif text-5xl md:text-7xl lg:text-8xl text-accent-cream leading-tight tracking-wide pointer-events-auto"
+          className="font-serif text-5xl md:text-6xl lg:text-7xl text-accent-cream leading-tight tracking-wide pointer-events-auto"
         >
-          Artisan <br />
-          <span className="text-accent-gold italic">Roasters</span>
+          {t("hero.title")}
         </motion.h1>
 
         <motion.p
@@ -51,8 +53,7 @@ export function HeroSection() {
           transition={{ duration: 0.8, delay: 0.4 }}
           className="mt-6 text-lg md:text-xl text-accent-cream/70 max-w-md font-light leading-relaxed pointer-events-auto"
         >
-          Discover the perfect balance of science and art in every cup.
-          Ethically sourced, masterfully roasted.
+          {t("hero.subtitle")}
         </motion.p>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -68,7 +69,7 @@ export function HeroSection() {
             }
             className="bg-accent-gold text-coffee-900 px-8 py-4 rounded-full font-bold tracking-widest hover:bg-accent-cream transition-all duration-300 shadow-[0_0_20px_rgba(212,175,55,0.4)]"
           >
-            EXPLORE MENU
+            {t("hero.scroll")}
           </button>
         </motion.div>
       </div>

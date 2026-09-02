@@ -16,3 +16,22 @@ body {
   color: var(--color-accent-cream);
   font-family: var(--font-sans);
 }
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom Scrollbar for a luxurious feel */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-coffee-900);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-coffee-700);
+  border-radius: 5px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-accent-gold);
+}

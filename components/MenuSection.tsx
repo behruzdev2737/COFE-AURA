@@ -68,7 +68,7 @@ const itemVariants = {
 import { useAppContext } from "./AppContext";
 
 function TiltCard({ item }: { item: (typeof menuItems)[0] }) {
-  const { setSelectedProduct, setIsModalOpen } = useAppContext();
+  const { setSelectedProduct, setIsModalOpen, t } = useAppContext();
   const x = useMotionValue(0);
   const y = useMotionValue(0);
 
@@ -152,7 +152,7 @@ function TiltCard({ item }: { item: (typeof menuItems)[0] }) {
             }}
             className="w-full py-2 bg-accent-gold/10 border border-accent-gold text-accent-gold rounded-lg hover:bg-accent-gold hover:text-coffee-900 transition-colors duration-300 font-bold tracking-widest"
           >
-            VIEW DETAILS
+            {t ? t("menu.view_details") : "VIEW DETAILS"}
           </button>
         </div>
       </motion.div>
@@ -161,6 +161,8 @@ function TiltCard({ item }: { item: (typeof menuItems)[0] }) {
 }
 
 export function MenuSection() {
+  const { t } = useAppContext();
+
   return (
     <section
       id="menu"
@@ -175,7 +177,7 @@ export function MenuSection() {
           className="text-center mb-20"
         >
           <h2 className="font-serif text-4xl md:text-5xl text-accent-cream mb-4">
-            Signature Brews
+            {t("menu.title")}
           </h2>
           <div className="w-24 h-1 bg-accent-gold mx-auto rounded-full" />
         </motion.div>

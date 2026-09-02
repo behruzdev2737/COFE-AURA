@@ -3,25 +3,26 @@
 import { motion } from "framer-motion";
 import { Coffee, Sprout, Flame } from "lucide-react";
 
+import { useAppContext } from "./AppContext";
+
 export function StorySection() {
+  const { t } = useAppContext();
+
   const features = [
     {
       icon: <Sprout className="w-8 h-8 text-accent-gold" />,
-      title: "Ethically Sourced",
-      description:
-        "We partner directly with farmers across the globe to ensure fair wages and sustainable farming practices.",
+      title: t("story.f1_title"),
+      description: t("story.f1_desc"),
     },
     {
       icon: <Flame className="w-8 h-8 text-accent-gold" />,
-      title: "Master Roasted",
-      description:
-        "Every bean is hand-roasted in small batches to unlock its full potential and deepest flavors.",
+      title: t("story.f2_title"),
+      description: t("story.f2_desc"),
     },
     {
       icon: <Coffee className="w-8 h-8 text-accent-gold" />,
-      title: "Perfectly Crafted",
-      description:
-        "Our baristas are artisans, turning every cup into a masterpiece of taste and presentation.",
+      title: t("story.f3_title"),
+      description: t("story.f3_desc"),
     },
   ];
 
@@ -39,18 +40,14 @@ export function StorySection() {
           className="lg:w-1/2"
         >
           <h2 className="font-serif text-4xl md:text-5xl text-accent-cream mb-6">
-            Our Story
+            {t("story.title")}
           </h2>
           <div className="w-24 h-1 bg-accent-gold rounded-full mb-8" />
           <p className="text-accent-cream/70 text-lg font-light leading-relaxed mb-6">
-            Born from a passion for the perfect brew, Aura Roasters started as a
-            small dream in a vintage garage. Today, we are a sanctuary for
-            coffee lovers seeking the extraordinary.
+            {t("story.p1")}
           </p>
           <p className="text-accent-cream/70 text-lg font-light leading-relaxed">
-            We believe that coffee is more than just a drink; it is an
-            experience, a ritual, and an art form. From the high-altitude farms
-            to your cup, we obsess over every detail.
+            {t("story.p2")}
           </p>
         </motion.div>
 

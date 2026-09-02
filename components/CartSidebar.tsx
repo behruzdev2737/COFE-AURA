@@ -14,10 +14,11 @@ export function CartSidebar() {
     updateQuantity,
     clearCart,
     cartTotal,
+    t,
   } = useAppContext();
 
   const handleCheckout = () => {
-    addToast("Order placed successfully! Preparing your coffee...");
+    addToast(t("toast.checkout"));
     clearCart();
     setIsCartOpen(false);
   };
@@ -46,7 +47,8 @@ export function CartSidebar() {
             {/* Header */}
             <div className="flex items-center justify-between p-6 border-b border-white/5">
               <h2 className="font-serif text-2xl text-accent-cream flex items-center gap-2">
-                <ShoppingBag className="w-6 h-6 text-accent-gold" /> Your Cart
+                <ShoppingBag className="w-6 h-6 text-accent-gold" />{" "}
+                {t("cart.title")}
               </h2>
               <button
                 onClick={() => setIsCartOpen(false)}
@@ -61,7 +63,7 @@ export function CartSidebar() {
               {cartItems.length === 0 ? (
                 <div className="h-full flex flex-col items-center justify-center text-accent-cream/50 space-y-4">
                   <ShoppingBag className="w-12 h-12 opacity-20" />
-                  <p>Your cart is empty.</p>
+                  <p>{t("cart.empty")}</p>
                 </div>
               ) : (
                 cartItems.map((item) => (
@@ -119,7 +121,9 @@ export function CartSidebar() {
             {cartItems.length > 0 && (
               <div className="p-6 border-t border-white/5 bg-[#0B0806]">
                 <div className="flex justify-between items-center mb-6">
-                  <span className="text-accent-cream/60">Subtotal</span>
+                  <span className="text-accent-cream/60">
+                    {t("cart.total")}
+                  </span>
                   <span className="text-2xl font-serif text-accent-cream">
                     ${cartTotal.toFixed(2)}
                   </span>
@@ -128,7 +132,7 @@ export function CartSidebar() {
                   onClick={handleCheckout}
                   className="w-full bg-accent-gold text-coffee-900 py-4 rounded-full font-bold tracking-widest hover:bg-accent-gold/90 transition-all hover:shadow-[0_0_20px_rgba(212,175,55,0.3)]"
                 >
-                  CHECKOUT
+                  {t("cart.checkout")}
                 </button>
               </div>
             )}

@@ -5,13 +5,16 @@ import { Coffee, Mail, Phone, MapPin, ArrowRight } from "lucide-react";
 import { useState } from "react";
 import { addToast } from "./Toast";
 
+import { useAppContext } from "./AppContext";
+
 export function Footer() {
   const [email, setEmail] = useState("");
+  const { t } = useAppContext();
 
   const handleSubscribe = (e: React.FormEvent) => {
     e.preventDefault();
     if (email) {
-      addToast("Successfully subscribed to our newsletter!");
+      addToast(t("toast.subscribed"));
       setEmail("");
     }
   };
@@ -27,8 +30,7 @@ export function Footer() {
             </span>
           </div>
           <p className="text-accent-cream/60 font-light leading-relaxed mb-6">
-            Elevating your daily ritual with artisanal roasts and uncompromising
-            quality.
+            {t("footer.desc")}
           </p>
           <div className="flex gap-4">
             <a
@@ -54,7 +56,7 @@ export function Footer() {
 
         <div>
           <h4 className="font-serif text-lg text-accent-cream mb-6 tracking-wide">
-            Explore
+            {t("footer.explore")}
           </h4>
           <ul className="space-y-4 text-accent-cream/60 font-light">
             <li>
@@ -62,7 +64,7 @@ export function Footer() {
                 href="#menu"
                 className="hover:text-accent-gold transition-colors"
               >
-                Our Menu
+                {t("nav.menu")}
               </a>
             </li>
             <li>
@@ -70,7 +72,7 @@ export function Footer() {
                 href="#story"
                 className="hover:text-accent-gold transition-colors"
               >
-                Our Story
+                {t("nav.story")}
               </a>
             </li>
             <li>
@@ -78,12 +80,15 @@ export function Footer() {
                 href="#locations"
                 className="hover:text-accent-gold transition-colors"
               >
-                Locations
+                {t("nav.locations")}
               </a>
             </li>
             <li>
-              <a href="#" className="hover:text-accent-gold transition-colors">
-                Shop Beans
+              <a
+                href="#shop"
+                className="hover:text-accent-gold transition-colors"
+              >
+                {t("nav.shop")}
               </a>
             </li>
           </ul>
@@ -91,7 +96,7 @@ export function Footer() {
 
         <div>
           <h4 className="font-serif text-lg text-accent-cream mb-6 tracking-wide">
-            Legal
+            {t("footer.legal")}
           </h4>
           <ul className="space-y-4 text-accent-cream/60 font-light">
             <li>
@@ -119,16 +124,15 @@ export function Footer() {
 
         <div className="md:col-span-1">
           <h4 className="font-serif text-lg text-accent-cream mb-6 tracking-wide">
-            Stay Connected
+            {t("footer.stay")}
           </h4>
           <p className="text-accent-cream/60 font-light mb-4">
-            Subscribe to receive exclusive offers, new roast announcements, and
-            brewing tips.
+            {t("footer.stay_desc")}
           </p>
           <form onSubmit={handleSubscribe} className="relative">
             <input
               type="email"
-              placeholder="Enter your email"
+              placeholder={t("footer.placeholder")}
               required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -145,8 +149,8 @@ export function Footer() {
       </div>
 
       <div className="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center text-accent-cream/40 text-sm font-light">
-        <p>© 2026 Aura Roasters. All rights reserved.</p>
-        <p className="mt-2 md:mt-0">Crafted for perfection.</p>
+        <p>{t("footer.rights")}</p>
+        <p className="mt-2 md:mt-0">{t("footer.crafted")}</p>
       </div>
     </footer>
   );

@@ -15,6 +15,7 @@ const beansProducts = [
       "Light roast whole beans. Bright acidity with notes of jasmine, bergamot, and blueberry.",
     price: "$22.00",
     color: "#8B5A2B", // Brownish/Gold
+    image: "/coffee-4.jpg",
   },
   {
     id: "bean-2",
@@ -23,6 +24,7 @@ const beansProducts = [
       "Dark roast whole beans. Full-bodied, earthy, with deep cocoa and spice undertones.",
     price: "$19.50",
     color: "#2C1E16", // Very dark
+    image: "/coffee-1.jpg",
   },
   {
     id: "bean-3",
@@ -31,6 +33,7 @@ const beansProducts = [
       "Medium roast. Our house blend balanced for espresso with caramel and toasted nut flavors.",
     price: "$24.00",
     color: "#D4AF37", // Gold
+    image: "/coffee-2.jpg",
   },
 ];
 
@@ -99,7 +102,7 @@ import { useState } from "react";
 
 function ShopCard({ product }: { product: (typeof beansProducts)[0] }) {
   const [isHovered, setIsHovered] = useState(false);
-  const { addToCart } = useAppContext();
+  const { addToCart, t } = useAppContext();
 
   return (
     <div
@@ -141,13 +144,15 @@ function ShopCard({ product }: { product: (typeof beansProducts)[0] }) {
               id: product.id,
               name: product.name,
               price: product.price,
-              image: "/coffee-placeholder.svg",
+              image: product.image,
             });
-            addToast(`${product.name} added to cart!`);
+            addToast(
+              `${product.name} ${t ? t("toast.added") : "added to cart!"}`,
+            );
           }}
           className="w-full py-3 bg-white/5 border border-white/10 text-accent-cream rounded-lg group-hover:bg-accent-gold group-hover:text-coffee-900 group-hover:border-accent-gold transition-all duration-300 font-bold tracking-widest text-sm"
         >
-          ADD TO CART
+          {t ? t("shop.add_to_cart") : "ADD TO CART"}
         </button>
       </div>
     </div>
@@ -155,6 +160,8 @@ function ShopCard({ product }: { product: (typeof beansProducts)[0] }) {
 }
 
 export function ShopSection() {
+  const { t } = useAppContext();
+
   return (
     <section
       id="shop"
@@ -169,12 +176,11 @@ export function ShopSection() {
           className="text-center mb-20"
         >
           <h2 className="font-serif text-4xl md:text-5xl text-accent-cream mb-4">
-            Take Aura Home
+            {t("shop.title")}
           </h2>
           <div className="w-24 h-1 bg-accent-gold mx-auto rounded-full mb-6" />
           <p className="text-accent-cream/60 max-w-2xl mx-auto font-light text-lg">
-            Bring the extraordinary experience of our master roasters to your
-            own kitchen with our premium whole bean selections.
+            {t("shop.subtitle")}
           </p>
         </motion.div>
 

@@ -5,12 +5,15 @@ import { X, Coffee } from "lucide-react";
 import { useAppContext } from "./AppContext";
 
 export function MobileMenu() {
-  const { isMobileMenuOpen, setIsMobileMenuOpen } = useAppContext();
+  const { isMobileMenuOpen, setIsMobileMenuOpen, t, lang, setLang } =
+    useAppContext();
 
   const links = [
-    { name: "MENU", href: "#menu" },
-    { name: "OUR STORY", href: "#story" },
-    { name: "LOCATIONS", href: "#locations" },
+    { name: t("nav.menu"), href: "#menu" },
+    { name: t("nav.shop"), href: "#shop" },
+    { name: t("nav.story"), href: "#story" },
+    { name: t("nav.reserve"), href: "#reserve" },
+    { name: t("nav.locations"), href: "#locations" },
   ];
 
   return (
@@ -37,7 +40,7 @@ export function MobileMenu() {
             </button>
           </div>
 
-          <div className="flex-1 flex flex-col items-center justify-center gap-12">
+          <div className="flex-1 flex flex-col items-center justify-center gap-12 relative">
             {links.map((link, i) => (
               <motion.a
                 key={link.name}
@@ -51,12 +54,50 @@ export function MobileMenu() {
                 {link.name}
               </motion.a>
             ))}
+
+            {/* Language Switcher Mobile */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.6 }}
+              className="absolute bottom-10 flex items-center gap-6 text-lg font-bold tracking-widest text-accent-cream/50"
+            >
+              <button
+                onClick={() => {
+                  setLang("en");
+                  setIsMobileMenuOpen(false);
+                }}
+                className={`hover:text-accent-gold transition-colors ${lang === "en" ? "text-accent-gold" : ""}`}
+              >
+                EN
+              </button>
+              <span>|</span>
+              <button
+                onClick={() => {
+                  setLang("uz");
+                  setIsMobileMenuOpen(false);
+                }}
+                className={`hover:text-accent-gold transition-colors ${lang === "uz" ? "text-accent-gold" : ""}`}
+              >
+                UZ
+              </button>
+              <span>|</span>
+              <button
+                onClick={() => {
+                  setLang("ru");
+                  setIsMobileMenuOpen(false);
+                }}
+                className={`hover:text-accent-gold transition-colors ${lang === "ru" ? "text-accent-gold" : ""}`}
+              >
+                RU
+              </button>
+            </motion.div>
           </div>
 
           {/* Footer inside mobile menu */}
           <div className="p-10 border-t border-white/5 text-center">
-            <p className="text-accent-cream/50 tracking-widest text-sm">
-              EXPERIENCE THE EXTRAORDINARY
+            <p className="text-accent-cream/50 tracking-widest text-sm uppercase">
+              {t("hero.subtitle")}
             </p>
           </div>
         </motion.div>
