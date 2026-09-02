@@ -26,7 +26,10 @@ export function StorySection() {
   ];
 
   return (
-    <section id="story" className="py-32 px-6 md:px-20 bg-coffee-800 relative">
+    <section
+      id="story"
+      className="py-32 px-6 md:px-20 bg-coffee-800 relative scroll-mt-24"
+    >
       <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-16">
         <motion.div
           initial={{ opacity: 0, x: -50 }}
@@ -62,7 +65,7 @@ export function StorySection() {
             <motion.div
               key={idx}
               whileHover={{ x: 10 }}
-              className="flex items-start gap-6 glass p-6 rounded-2xl border-l-4 border-l-accent-gold hover:bg-white/5 transition-all cursor-default"
+              className="flex items-start gap-6 p-6 rounded-2xl border-l-4 border-l-accent-gold bg-[#110D0B]/30 hover:bg-white/5 transition-all cursor-default"
             >
               <div className="flex-shrink-0 mt-1">{feature.icon}</div>
               <div>

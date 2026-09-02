@@ -1,52 +1,152 @@
-import { Coffee, Mail, Phone, MapPin } from "lucide-react";
+"use client";
+
+import { motion } from "framer-motion";
+import { Coffee, Mail, Phone, MapPin, ArrowRight } from "lucide-react";
+import { useState } from "react";
+import { addToast } from "./Toast";
 
 export function Footer() {
+  const [email, setEmail] = useState("");
+
+  const handleSubscribe = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (email) {
+      addToast("Successfully subscribed to our newsletter!");
+      setEmail("");
+    }
+  };
+
   return (
-    <footer className="bg-coffee-800 border-t border-white/5 py-12 px-6 md:px-20">
-      <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
-        <div className="flex items-center gap-2">
-          <Coffee className="w-6 h-6 text-accent-gold" />
-          <span className="font-serif text-xl font-bold tracking-wider text-accent-cream">
-            AURA
-          </span>
+    <footer className="bg-[#0B0806] pt-20 pb-10 px-6 md:px-20 border-t border-white/5">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+        <div className="md:col-span-1">
+          <div className="flex items-center gap-2 mb-6 text-accent-gold">
+            <Coffee className="w-8 h-8" />
+            <span className="font-serif text-2xl font-bold tracking-wider text-accent-cream">
+              AURA
+            </span>
+          </div>
+          <p className="text-accent-cream/60 font-light leading-relaxed mb-6">
+            Elevating your daily ritual with artisanal roasts and uncompromising
+            quality.
+          </p>
+          <div className="flex gap-4">
+            <a
+              href="#"
+              className="w-10 h-10 rounded-full bg-[#110D0B] border border-white/5 flex items-center justify-center text-accent-cream hover:text-accent-gold hover:border-accent-gold/50 transition-all"
+            >
+              <Mail className="w-4 h-4" />
+            </a>
+            <a
+              href="#"
+              className="w-10 h-10 rounded-full bg-[#110D0B] border border-white/5 flex items-center justify-center text-accent-cream hover:text-accent-gold hover:border-accent-gold/50 transition-all"
+            >
+              <Phone className="w-4 h-4" />
+            </a>
+            <a
+              href="#"
+              className="w-10 h-10 rounded-full bg-[#110D0B] border border-white/5 flex items-center justify-center text-accent-cream hover:text-accent-gold hover:border-accent-gold/50 transition-all"
+            >
+              <MapPin className="w-4 h-4" />
+            </a>
+          </div>
         </div>
 
-        <div className="flex gap-8 text-sm text-accent-cream/60 tracking-widest">
-          <a href="#" className="hover:text-accent-gold transition-colors">
-            PRIVACY
-          </a>
-          <a href="#" className="hover:text-accent-gold transition-colors">
-            TERMS
-          </a>
-          <a href="#" className="hover:text-accent-gold transition-colors">
-            CONTACT
-          </a>
+        <div>
+          <h4 className="font-serif text-lg text-accent-cream mb-6 tracking-wide">
+            Explore
+          </h4>
+          <ul className="space-y-4 text-accent-cream/60 font-light">
+            <li>
+              <a
+                href="#menu"
+                className="hover:text-accent-gold transition-colors"
+              >
+                Our Menu
+              </a>
+            </li>
+            <li>
+              <a
+                href="#story"
+                className="hover:text-accent-gold transition-colors"
+              >
+                Our Story
+              </a>
+            </li>
+            <li>
+              <a
+                href="#locations"
+                className="hover:text-accent-gold transition-colors"
+              >
+                Locations
+              </a>
+            </li>
+            <li>
+              <a href="#" className="hover:text-accent-gold transition-colors">
+                Shop Beans
+              </a>
+            </li>
+          </ul>
         </div>
 
-        <div className="flex gap-4">
-          <a
-            href="#"
-            className="w-10 h-10 rounded-full glass flex items-center justify-center text-accent-cream hover:text-accent-gold hover:border-accent-gold/50 transition-all"
-          >
-            <Mail className="w-4 h-4" />
-          </a>
-          <a
-            href="#"
-            className="w-10 h-10 rounded-full glass flex items-center justify-center text-accent-cream hover:text-accent-gold hover:border-accent-gold/50 transition-all"
-          >
-            <Phone className="w-4 h-4" />
-          </a>
-          <a
-            href="#"
-            className="w-10 h-10 rounded-full glass flex items-center justify-center text-accent-cream hover:text-accent-gold hover:border-accent-gold/50 transition-all"
-          >
-            <MapPin className="w-4 h-4" />
-          </a>
+        <div>
+          <h4 className="font-serif text-lg text-accent-cream mb-6 tracking-wide">
+            Legal
+          </h4>
+          <ul className="space-y-4 text-accent-cream/60 font-light">
+            <li>
+              <a href="#" className="hover:text-accent-gold transition-colors">
+                Privacy Policy
+              </a>
+            </li>
+            <li>
+              <a href="#" className="hover:text-accent-gold transition-colors">
+                Terms of Service
+              </a>
+            </li>
+            <li>
+              <a href="#" className="hover:text-accent-gold transition-colors">
+                Shipping Info
+              </a>
+            </li>
+            <li>
+              <a href="#" className="hover:text-accent-gold transition-colors">
+                Returns
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div className="md:col-span-1">
+          <h4 className="font-serif text-lg text-accent-cream mb-6 tracking-wide">
+            Stay Connected
+          </h4>
+          <p className="text-accent-cream/60 font-light mb-4">
+            Subscribe to receive exclusive offers, new roast announcements, and
+            brewing tips.
+          </p>
+          <form onSubmit={handleSubscribe} className="relative">
+            <input
+              type="email"
+              placeholder="Enter your email"
+              required
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="w-full bg-[#110D0B] border border-white/10 rounded-full py-3 px-6 text-accent-cream focus:outline-none focus:border-accent-gold/50 transition-colors placeholder:text-white/20"
+            />
+            <button
+              type="submit"
+              className="absolute right-2 top-2 bottom-2 bg-accent-gold text-coffee-900 w-10 h-10 rounded-full flex items-center justify-center hover:bg-accent-cream transition-colors"
+            >
+              <ArrowRight className="w-5 h-5" />
+            </button>
+          </form>
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto mt-12 text-center text-xs text-accent-cream/40">
-        &copy; {new Date().getFullYear()} Aura Roasters. All rights reserved.
+      <div className="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center text-accent-cream/40 text-sm font-light">
+        <p>© 2026 Aura Roasters. All rights reserved.</p>
+        <p className="mt-2 md:mt-0">Crafted for perfection.</p>
       </div>
     </footer>
   );

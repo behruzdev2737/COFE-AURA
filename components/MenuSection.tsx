@@ -49,7 +49,10 @@ const itemVariants = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.8 } },
 };
 
+import { useAppContext } from "./AppContext";
+
 function TiltCard({ item }: { item: (typeof menuItems)[0] }) {
+  const { addToCart } = useAppContext();
   const x = useMotionValue(0);
   const y = useMotionValue(0);
 
@@ -66,7 +69,6 @@ function TiltCard({ item }: { item: (typeof menuItems)[0] }) {
     const mouseX = e.clientX - rect.left;
     const mouseY = e.clientY - rect.top;
 
-    // Convert to percentage centered around 0
     const xPct = mouseX / width - 0.5;
     const yPct = mouseY / height - 0.5;
 
@@ -96,7 +98,7 @@ function TiltCard({ item }: { item: (typeof menuItems)[0] }) {
           transformStyle: "preserve-3d",
         }}
         data-interactive
-        className="glass p-8 rounded-2xl group cursor-pointer transition-shadow duration-300 hover:shadow-[0_20px_40px_rgba(212,175,55,0.15)] hover:border-accent-gold/50 flex flex-col h-full bg-gradient-to-br from-white/5 to-transparent backdrop-blur-xl"
+        className="p-8 rounded-2xl group cursor-pointer transition-shadow duration-300 hover:shadow-[0_20px_40px_rgba(212,175,55,0.1)] hover:border-accent-gold/40 flex flex-col h-full bg-[#110D0B] border border-white/5"
       >
         <div
           className="flex justify-between items-start mb-4"
@@ -117,7 +119,15 @@ function TiltCard({ item }: { item: (typeof menuItems)[0] }) {
         </p>
         <div className="mt-auto" style={{ transform: "translateZ(40px)" }}>
           <button
-            onClick={() => addToast(`${item.name} added to cart!`)}
+            onClick={() => {
+              addToCart({
+                id: item.id.toString(),
+                name: item.name,
+                price: item.price,
+                image: "/coffee-placeholder.svg",
+              });
+              addToast(`${item.name} added to cart!`);
+            }}
             className="w-full py-2 bg-accent-gold/10 border border-accent-gold text-accent-gold rounded-lg hover:bg-accent-gold hover:text-coffee-900 transition-colors duration-300 font-bold tracking-widest"
           >
             ADD TO CART
@@ -130,7 +140,10 @@ function TiltCard({ item }: { item: (typeof menuItems)[0] }) {
 
 export function MenuSection() {
   return (
-    <section id="menu" className="py-32 px-6 md:px-20 bg-coffee-900 relative">
+    <section
+      id="menu"
+      className="py-32 px-6 md:px-20 bg-coffee-900 relative scroll-mt-24"
+    >
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 30 }}

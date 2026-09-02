@@ -25,7 +25,7 @@ export function LocationsSection() {
   return (
     <section
       id="locations"
-      className="py-32 px-6 md:px-20 bg-coffee-900 relative"
+      className="py-32 px-6 md:px-20 bg-coffee-900 relative scroll-mt-24"
     >
       <div className="max-w-7xl mx-auto">
         <motion.div
@@ -50,7 +50,7 @@ export function LocationsSection() {
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: idx * 0.2 }}
               whileHover={{ y: -10 }}
-              className="glass p-10 rounded-2xl text-center flex flex-col items-center group cursor-pointer hover:shadow-[0_0_30px_rgba(212,175,55,0.15)] hover:border-accent-gold/40 transition-all duration-300"
+              className="bg-[#110D0B] border border-white/5 p-8 rounded-2xl flex flex-col items-center group cursor-pointer hover:border-accent-gold/30 transition-colors"
             >
               <div className="w-16 h-16 rounded-full bg-accent-gold/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                 <MapPin className="w-8 h-8 text-accent-gold" />

@@ -2,11 +2,11 @@
 
 @theme inline {
   --color-coffee-900: #130f0d;
-  --color-coffee-800: #1C1614;
-  --color-coffee-700: #2C2420;
-  --color-coffee-600: #3E322C;
-  --color-accent-gold: #D4AF37;
-  --color-accent-cream: #F5F5F0;
+  --color-coffee-800: #1c1614;
+  --color-coffee-700: #2c2420;
+  --color-coffee-600: #3e322c;
+  --color-accent-gold: #d4af37;
+  --color-accent-cream: #f5f5f0;
   --font-serif: var(--font-playfair), serif;
   --font-sans: var(--font-inter), sans-serif;
 }
@@ -15,11 +15,4 @@ body {
   background-color: var(--color-coffee-800);
   color: var(--color-accent-cream);
   font-family: var(--font-sans);
-}
-
-.glass {
-  background: rgba(44, 36, 32, 0.4);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(212, 175, 55, 0.1);
 }

@@ -4,6 +4,7 @@ import { Marquee } from "@/components/Marquee";
 import { StorySection } from "@/components/StorySection";
 import { MenuSection } from "@/components/MenuSection";
 import { LocationsSection } from "@/components/LocationsSection";
+import { TestimonialsSection } from "@/components/TestimonialsSection";
 import { Footer } from "@/components/Footer";
 
 export default function Home() {
@@ -15,6 +16,7 @@ export default function Home() {
       <StorySection />
       <MenuSection />
       <LocationsSection />
+      <TestimonialsSection />
       <Footer />
     </main>
   );

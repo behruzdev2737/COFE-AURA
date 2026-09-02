@@ -1,16 +1,19 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Coffee, Menu } from "lucide-react";
-import { addToast } from "./Toast";
+import { Coffee, Menu, ShoppingBag } from "lucide-react";
+import { useAppContext } from "./AppContext";
 
 export function Navbar() {
+  const { setIsMobileMenuOpen, setIsCartOpen, cartItems } = useAppContext();
+  const cartCount = cartItems.reduce((acc, item) => acc + item.quantity, 0);
+
   return (
     <motion.nav
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.8 }}
-      className="fixed top-0 left-0 right-0 z-50 glass px-6 py-4 flex justify-between items-center"
+      className="fixed top-0 left-0 right-0 z-50 bg-[#0B0806]/95 border-b border-white/5 backdrop-blur-md px-6 py-4 flex justify-between items-center"
     >
       <div
         className="flex items-center gap-2 cursor-pointer"
@@ -38,13 +41,24 @@ export function Navbar() {
       </div>
 
       <div className="flex items-center gap-4">
+        {/* Cart Button */}
         <button
-          onClick={() => addToast("Order modal coming soon!")}
-          className="hidden md:block bg-accent-gold text-coffee-900 px-6 py-2 rounded-full font-bold tracking-wide hover:bg-accent-gold/90 transition-colors shadow-[0_0_15px_rgba(212,175,55,0.3)]"
+          onClick={() => setIsCartOpen(true)}
+          className="relative w-12 h-12 rounded-full border border-white/10 flex items-center justify-center text-accent-cream hover:bg-white/5 hover:text-accent-gold hover:border-accent-gold/50 transition-all"
         >
-          ORDER NOW
+          <ShoppingBag className="w-5 h-5" />
+          {cartCount > 0 && (
+            <span className="absolute -top-1 -right-1 bg-accent-gold text-coffee-900 w-5 h-5 flex items-center justify-center rounded-full text-xs font-bold">
+              {cartCount}
+            </span>
+          )}
         </button>
-        <button className="md:hidden text-accent-cream">
+
+        {/* Mobile Menu Button */}
+        <button
+          onClick={() => setIsMobileMenuOpen(true)}
+          className="md:hidden w-12 h-12 rounded-full bg-white/5 flex items-center justify-center text-accent-cream hover:bg-white/10 transition-colors"
+        >
           <Menu className="w-6 h-6" />
         </button>
       </div>

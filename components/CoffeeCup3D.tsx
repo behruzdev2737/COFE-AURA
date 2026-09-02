@@ -31,12 +31,11 @@ export function CoffeeCup3D() {
     }
   });
 
-  // Reusable material for the cup body to ensure consistency
   const cupMaterial = new THREE.MeshPhysicalMaterial({
-    color: "#1C1614", // Deep espresso dark brown/black
-    roughness: 0.15,
-    metalness: 0.3,
-    clearcoat: 0.5,
+    color: "#0F0B09",
+    roughness: 0.1,
+    metalness: 0.1,
+    clearcoat: 1.0,
     clearcoatRoughness: 0.1,
   });
 
