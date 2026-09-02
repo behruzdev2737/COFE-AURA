@@ -12,6 +12,11 @@ const menuItems = [
     description:
       "A bold, intense shot with notes of dark chocolate and black cherry. Roasted for the purist.",
     price: "$4.50",
+    origin: "Colombia & Brazil",
+    notes: "Dark Chocolate, Cherry",
+    roast: "Dark",
+    image:
+      "https://images.unsplash.com/photo-1514432324607-a1282902e90b?auto=format&fit=crop&w=500&q=80",
   },
   {
     id: 2,
@@ -19,6 +24,11 @@ const menuItems = [
     description:
       "Silky steamed milk gently layered over robust espresso, finished with a whisper of vanilla bean.",
     price: "$5.50",
+    origin: "Ethiopia Yirgacheffe",
+    notes: "Vanilla, Floral, Honey",
+    roast: "Medium",
+    image:
+      "https://images.unsplash.com/photo-1497935586351-b67a49e012bf?auto=format&fit=crop&w=500&q=80",
   },
   {
     id: 3,
@@ -26,6 +36,11 @@ const menuItems = [
     description:
       "Equal parts rich espresso and textured milk, balanced perfectly for a smooth, lingering finish.",
     price: "$4.75",
+    origin: "Guatemala Antigua",
+    notes: "Caramel, Cocoa, Nutty",
+    roast: "Medium Dark",
+    image:
+      "https://images.unsplash.com/photo-1585494156145-1c15fa4eba99?auto=format&fit=crop&w=500&q=80",
   },
   {
     id: 4,
@@ -33,6 +48,11 @@ const menuItems = [
     description:
       "Single-origin Ethiopian beans slowly brewed to highlight floral aromas and bright citrus undertones.",
     price: "$6.00",
+    origin: "Ethiopia Sidamo",
+    notes: "Jasmine, Bergamot, Lemon",
+    roast: "Light",
+    image:
+      "https://images.unsplash.com/photo-1495474472206-bf73fdea3146?auto=format&fit=crop&w=500&q=80",
   },
 ];
 
@@ -52,7 +72,7 @@ const itemVariants = {
 import { useAppContext } from "./AppContext";
 
 function TiltCard({ item }: { item: (typeof menuItems)[0] }) {
-  const { addToCart } = useAppContext();
+  const { setSelectedProduct, setIsModalOpen } = useAppContext();
   const x = useMotionValue(0);
   const y = useMotionValue(0);
 
@@ -101,8 +121,19 @@ function TiltCard({ item }: { item: (typeof menuItems)[0] }) {
         className="p-8 rounded-2xl group cursor-pointer transition-shadow duration-300 hover:shadow-[0_20px_40px_rgba(212,175,55,0.1)] hover:border-accent-gold/40 flex flex-col h-full bg-[#110D0B] border border-white/5"
       >
         <div
-          className="flex justify-between items-start mb-4"
+          className="w-full h-48 mb-6 rounded-xl overflow-hidden relative"
           style={{ transform: "translateZ(30px)" }}
+        >
+          <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors z-10 pointer-events-none" />
+          <img
+            src={item.image}
+            alt={item.name}
+            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+          />
+        </div>
+        <div
+          className="flex justify-between items-start mb-4"
+          style={{ transform: "translateZ(40px)" }}
         >
           <h3 className="font-serif text-2xl text-accent-cream group-hover:text-accent-gold transition-colors">
             {item.name}
@@ -120,17 +151,12 @@ function TiltCard({ item }: { item: (typeof menuItems)[0] }) {
         <div className="mt-auto" style={{ transform: "translateZ(40px)" }}>
           <button
             onClick={() => {
-              addToCart({
-                id: item.id.toString(),
-                name: item.name,
-                price: item.price,
-                image: "/coffee-placeholder.svg",
-              });
-              addToast(`${item.name} added to cart!`);
+              setSelectedProduct(item);
+              setIsModalOpen(true);
             }}
             className="w-full py-2 bg-accent-gold/10 border border-accent-gold text-accent-gold rounded-lg hover:bg-accent-gold hover:text-coffee-900 transition-colors duration-300 font-bold tracking-widest"
           >
-            ADD TO CART
+            VIEW DETAILS
           </button>
         </div>
       </motion.div>

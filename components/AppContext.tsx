@@ -21,6 +21,10 @@ interface AppContextType {
   updateQuantity: (id: string, qty: number) => void;
   clearCart: () => void;
   cartTotal: number;
+  isModalOpen: boolean;
+  setIsModalOpen: (v: boolean) => void;
+  selectedProduct: any;
+  setSelectedProduct: (product: any) => void;
 }
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
@@ -29,6 +33,9 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState<any>(null);
 
   const clearCart = () => {
     setCartItems([]);
@@ -79,6 +86,10 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
         updateQuantity,
         clearCart,
         cartTotal,
+        isModalOpen,
+        setIsModalOpen,
+        selectedProduct,
+        setSelectedProduct,
       }}
     >
       {children}

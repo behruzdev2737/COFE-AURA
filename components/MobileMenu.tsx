@@ -22,7 +22,6 @@ export function MobileMenu() {
           exit={{ opacity: 0, y: -20 }}
           className="fixed inset-0 z-[100] bg-[#0B0806]/95 backdrop-blur-xl flex flex-col"
         >
-          {/* Header */}
           <div className="flex justify-between items-center p-6 border-b border-white/5">
             <div className="flex items-center gap-2 text-accent-gold">
               <Coffee className="w-8 h-8" />
@@ -38,7 +37,6 @@ export function MobileMenu() {
             </button>
           </div>
 
-          {/* Links */}
           <div className="flex-1 flex flex-col items-center justify-center gap-12">
             {links.map((link, i) => (
               <motion.a

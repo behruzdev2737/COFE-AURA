@@ -22,6 +22,7 @@ import { AppProvider } from "@/components/AppContext";
 import { Preloader } from "@/components/Preloader";
 import { MobileMenu } from "@/components/MobileMenu";
 import { CartSidebar } from "@/components/CartSidebar";
+import { ProductModal } from "@/components/ProductModal";
 
 export default function RootLayout({
   children,
@@ -38,6 +39,7 @@ export default function RootLayout({
           <Preloader />
           <MobileMenu />
           <CartSidebar />
+          <ProductModal />
           {children}
           <ToastContainer />
         </AppProvider>
