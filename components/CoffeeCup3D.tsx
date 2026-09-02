@@ -6,7 +6,8 @@ import {
   Float,
   Sparkles,
   Environment,
-  MeshTransmissionMaterial,
+  Text3D,
+  Center,
 } from "@react-three/drei";
 import * as THREE from "three";
 
@@ -110,6 +111,28 @@ export function CoffeeCup3D() {
                 metalness={0.8}
               />
             </mesh>
+
+            {/* Latte Art / Carved Text */}
+            <Center position={[0, 1.16, 0]} rotation={[-Math.PI / 2, 0, 0]}>
+              <Text3D
+                font="/fonts/helvetiker_regular.typeface.json"
+                size={0.22}
+                height={0.02}
+                curveSegments={12}
+                bevelEnabled
+                bevelThickness={0.01}
+                bevelSize={0.01}
+                bevelOffset={0}
+                bevelSegments={5}
+              >
+                behruzdev
+                <meshStandardMaterial
+                  color="#D4AF37"
+                  roughness={0.8}
+                  metalness={0.2}
+                />
+              </Text3D>
+            </Center>
           </group>
 
           {/* Magic Particles - Steam */}
