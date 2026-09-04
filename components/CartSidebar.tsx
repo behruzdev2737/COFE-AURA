@@ -17,7 +17,44 @@ export function CartSidebar() {
     t,
   } = useAppContext();
 
-  const handleCheckout = () => {
+  const handleCheckout = async () => {
+    // Collect order details
+    const orderDetails = cartItems
+      .map((item) => `- ${item.name} (${item.quantity} ta)`)
+      .join("\n");
+
+    // Get Telegram user info
+    const tg =
+      typeof window !== "undefined" && (window as any).Telegram?.WebApp;
+    const chatId = tg?.initDataUnsafe?.user?.id;
+
+    if (chatId) {
+      // Send to API
+      try {
+        await fetch("/api/order", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            chatId,
+            orderDetails,
+            totalAmount: `$${cartTotal.toFixed(2)}`,
+          }),
+        });
+
+        // Haptic feedback
+        if (tg.HapticFeedback) {
+          tg.HapticFeedback.notificationOccurred("success");
+        }
+
+        // Close WebApp
+        setTimeout(() => {
+          tg.close();
+        }, 2000);
+      } catch (err) {
+        console.error("Order failed", err);
+      }
+    }
+
     addToast(t("toast.checkout"));
     clearCart();
     setIsCartOpen(false);
@@ -119,7 +156,7 @@ export function CartSidebar() {
 
             {/* Footer */}
             {cartItems.length > 0 && (
-              <div className="p-6 border-t border-white/5 bg-[#0B0806]">
+              <div className="p-6 pb-12 sm:pb-6 border-t border-white/5 bg-[#0B0806] shrink-0">
                 <div className="flex justify-between items-center mb-6">
                   <span className="text-accent-cream/60">
                     {t("cart.total")}

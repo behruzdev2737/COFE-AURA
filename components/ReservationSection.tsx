@@ -29,7 +29,6 @@ export function ReservationSection() {
       className="py-32 px-6 md:px-20 bg-coffee-800 relative border-t border-white/5 scroll-mt-24"
     >
       <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-16">
-        {/* Left Side: Text */}
         <motion.div
           initial={{ opacity: 0, x: -50 }}
           whileInView={{ opacity: 1, x: 0 }}
@@ -49,7 +48,6 @@ export function ReservationSection() {
           </p>
         </motion.div>
 
-        {/* Right Side: Form */}
         <motion.div
           initial={{ opacity: 0, x: 50 }}
           whileInView={{ opacity: 1, x: 0 }}
@@ -61,12 +59,10 @@ export function ReservationSection() {
             onSubmit={handleReserve}
             className="bg-[#110D0B] p-8 md:p-10 rounded-2xl border border-white/5 shadow-2xl relative overflow-hidden"
           >
-            {/* Decorative background glow */}
             <div className="absolute top-0 right-0 w-64 h-64 bg-accent-gold/5 blur-[100px] pointer-events-none rounded-full" />
 
             <div className="space-y-6 relative z-10">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {/* Date Input */}
                 <div className="space-y-2">
                   <label className="text-xs text-accent-cream/50 uppercase tracking-widest font-semibold flex items-center gap-2">
                     <Calendar className="w-3 h-3" /> {t("reserve.date")}
@@ -80,7 +76,6 @@ export function ReservationSection() {
                   />
                 </div>
 
-                {/* Time Input */}
                 <div className="space-y-2">
                   <label className="text-xs text-accent-cream/50 uppercase tracking-widest font-semibold flex items-center gap-2">
                     <Clock className="w-3 h-3" /> {t("reserve.time")}
@@ -95,7 +90,6 @@ export function ReservationSection() {
                 </div>
               </div>
 
-              {/* Guests Input */}
               <div className="space-y-2">
                 <label className="text-xs text-accent-cream/50 uppercase tracking-widest font-semibold flex items-center gap-2">
                   <Users className="w-3 h-3" /> {t("reserve.guests")}

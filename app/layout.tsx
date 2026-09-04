@@ -34,6 +34,9 @@ export default function RootLayout({
       lang="en"
       className={`${inter.variable} ${playfair.variable} scroll-smooth`}
     >
+      <head>
+        <script src="https://telegram.org/js/telegram-web-app.js"></script>
+      </head>
       <body className="bg-[#0B0806] text-[#F5F5F0] antialiased overflow-x-hidden min-h-screen selection:bg-accent-gold selection:text-coffee-900 relative">
         <AppProvider>
           <Preloader />
@@ -43,6 +46,15 @@ export default function RootLayout({
           {children}
           <ToastContainer />
         </AppProvider>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              if (window.Telegram && window.Telegram.WebApp) {
+                window.Telegram.WebApp.expand();
+              }
+            `,
+          }}
+        />
       </body>
     </html>
   );

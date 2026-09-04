@@ -36,7 +36,6 @@ export function ProductModal() {
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
             className="relative w-full max-w-2xl bg-[#0B0806] border border-white/10 rounded-2xl shadow-2xl overflow-hidden z-10 flex flex-col md:flex-row"
           >
-            {/* Left 3D Visual Area */}
             <div className="w-full md:w-2/5 bg-gradient-to-br from-[#1C1614] to-[#0B0806] flex flex-col items-center justify-center p-0 border-b md:border-b-0 md:border-r border-white/5 relative min-h-[300px]">
               <div className="absolute top-6 text-center w-full z-10 pointer-events-none">
                 <h3 className="text-accent-cream/50 uppercase tracking-widest text-xs font-semibold">
@@ -53,7 +52,6 @@ export function ProductModal() {
               />
             </div>
 
-            {/* Right Content */}
             <div className="w-full md:w-3/5 p-8 flex flex-col">
               <div className="flex justify-between items-start mb-6">
                 <div className="flex items-center gap-4">
@@ -85,7 +83,6 @@ export function ProductModal() {
                 {selectedProduct.description}
               </p>
 
-              {/* Specs */}
               <div className="grid grid-cols-2 gap-4 mb-8">
                 <div className="flex items-center gap-3">
                   <Map className="w-5 h-5 text-accent-gold/50" />

@@ -4,7 +4,6 @@ import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { addToast } from "./Toast";
 import React from "react";
 
-// --- existing menuItems & variants ---
 const menuItems = [
   {
     id: 1,

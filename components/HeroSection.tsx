@@ -9,16 +9,10 @@ import { useAppContext } from "./AppContext";
 function ResponsiveScene() {
   const { viewport } = useThree();
 
-  // Tailwind md breakpoint is 768px. In 3D units, this usually corresponds to viewport.width around 4-6 depending on camera distance.
-  // We can use a simple threshold or better, use the aspect ratio (width/height).
-  // If width < height, it's a portrait mobile screen.
   const isMobile = viewport.width < viewport.height;
 
-  // On Desktop: Text is left, Cup is right. Center of right half is viewport.width / 4.
-  // On Mobile: Text is top, Cup is bottom. Center of bottom half is -viewport.height / 4.
   const targetX = isMobile ? 0 : viewport.width / 4;
   const targetY = isMobile ? -viewport.height / 4 : 0;
-  // Scale it down a bit on mobile so it doesn't get clipped
   const scale = isMobile ? 0.8 : 1;
 
   return (
@@ -33,10 +27,8 @@ export function HeroSection() {
 
   return (
     <section className="relative min-h-screen w-full flex flex-col md:flex-row items-center justify-between px-6 md:px-20 overflow-hidden bg-[#0B0806]">
-      {/* Crisp background accents instead of blurry gradients */}
       <div className="absolute top-0 right-0 w-full md:w-1/2 h-1/2 md:h-full bg-gradient-to-b md:bg-gradient-to-l from-[#1C1614] to-transparent z-0 pointer-events-none" />
 
-      {/* Left Content (Text) */}
       <div className="relative z-10 w-full md:w-1/2 flex flex-col justify-center items-center md:items-start pt-20 md:pt-0 pointer-events-none text-center md:text-left">
         <motion.h1
           initial={{ opacity: 0, y: 30 }}
@@ -74,7 +66,6 @@ export function HeroSection() {
         </motion.div>
       </div>
 
-      {/* 3D Canvas Container - ALWAYS Full Screen to track mouse everywhere */}
       <div className="absolute inset-0 z-0 pointer-events-auto overflow-hidden">
         <Canvas shadows camera={{ position: [0, 1.5, 8], fov: 45 }}>
           <Suspense fallback={null}>

@@ -48,7 +48,6 @@ export function Navbar() {
       </div>
 
       <div className="flex items-center gap-4">
-        {/* Language Switcher */}
         <div className="hidden md:flex items-center gap-2 text-xs font-bold tracking-widest text-accent-cream/50 mr-2">
           <button
             onClick={() => setLang("en")}
@@ -72,7 +71,6 @@ export function Navbar() {
           </button>
         </div>
 
-        {/* Cart Button */}
         <button
           onClick={() => setIsCartOpen(true)}
           className="relative w-12 h-12 rounded-full border border-white/10 flex items-center justify-center text-accent-cream hover:bg-white/5 hover:text-accent-gold hover:border-accent-gold/50 transition-all"
@@ -85,7 +83,6 @@ export function Navbar() {
           )}
         </button>
 
-        {/* Mobile Menu Button */}
         <button
           onClick={() => setIsMobileMenuOpen(true)}
           className="md:hidden w-12 h-12 rounded-full bg-white/5 flex items-center justify-center text-accent-cream hover:bg-white/10 transition-colors"

@@ -55,7 +55,6 @@ export function MobileMenu() {
               </motion.a>
             ))}
 
-            {/* Language Switcher Mobile */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -94,7 +93,6 @@ export function MobileMenu() {
             </motion.div>
           </div>
 
-          {/* Footer inside mobile menu */}
           <div className="p-10 border-t border-white/5 text-center">
             <p className="text-accent-cream/50 tracking-widest text-sm uppercase">
               {t("hero.subtitle")}

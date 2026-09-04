@@ -46,7 +46,6 @@ export function TestimonialsSection() {
 
   return (
     <section className="py-32 px-6 md:px-20 bg-[#0B0806] border-y border-white/5 relative overflow-hidden">
-      {/* Decorative large quote mark */}
       <Quote className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[30vw] h-[30vw] text-white/5" />
 
       <div className="max-w-4xl mx-auto relative z-10 text-center">

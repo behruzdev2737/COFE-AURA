@@ -16,7 +16,6 @@ export function Marquee() {
           duration: 20,
         }}
       >
-        {/* Repeat text multiple times to ensure seamless infinite loop */}
         <span className="pr-4">{text}</span>
         <span className="pr-4">{text}</span>
         <span className="pr-4">{text}</span>
